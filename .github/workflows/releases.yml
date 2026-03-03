@@ -6,6 +6,9 @@ on:
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
+  artifact-metadata: write
 
 jobs:
   build:
@@ -30,6 +33,11 @@ jobs:
           CGO_ENABLED: 0
         run: |
           go build -o simplesftp-linux-${{ matrix.goarch }} -ldflags="-s -w" .
+
+      - name: Generate artifact attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: '${{ github.workspace }}/simplesftp-linux-${{ matrix.goarch }}'
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
