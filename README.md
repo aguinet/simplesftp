@@ -1,6 +1,7 @@
 # simplesftp
 
-`simplesftp` is a very simple read-only SFTP server that serves one directory of your system over SFTP.
+`simplesftp` is a very simple read-only SFTP server that serves one directory
+of your system over SFTP.
 
 If you just want to serve some directory over SFTP without any headaches or
 fear or misconfiguration, that's the tool you need!
@@ -11,6 +12,7 @@ Features/goals:
 * enforces read-only at the server level: the server won't accept any "write"
   command from the client
 * supports multiple users authenticated with passwords and/or public keys
+* uses [Github's artifact attestations](#verified-releases) for releases
 
 Non-goals:
 
@@ -18,6 +20,10 @@ Non-goals:
 * any form of shell for users
 
 ## Quick start
+
+Download a release binary from the [releases
+page](https://github.com/aguinet/simplesftp/releases), or [build it from
+source](#build-and-test).
 
 ```
 # Generate a host key with no password
@@ -59,6 +65,21 @@ pubkeys:
       ssh-rsa ...
 ```
 
+## Verified releases
+
+Binaries in the [releases page](https://github.com/aguinet/simplesftp/releases)
+are using [Github's artifact
+attestations](https://docs.github.com/en/actions/concepts/security/artifact-attestations).
+This gives some cryptographic proof that the binaries have been generated from
+a given tag/commit, and that this happened in an associated Github action
+environment.
+
+To verify the downloaded binaries, [install the Github CLI
+tool](https://cli.github.com/) and run for instance:
+
+```
+$ gh attestation verify simplesftp-linux-arm64 --repo aguinet/simplesftp
+```
 
 ## Build & test
 
