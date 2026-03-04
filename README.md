@@ -4,7 +4,7 @@
 of your system over SFTP.
 
 If you just want to serve some directory over SFTP without any headaches or
-fear or misconfiguration, that's the tool you need!
+fear of misconfiguration, that's the tool you need!
 
 Features/goals:
 
